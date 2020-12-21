@@ -4,6 +4,15 @@ package com.gft.tdd_jokenpo.model;
 public class Jogador {
 
 	private Opcao opcao;
+	private boolean vencedor;
+
+	public boolean isVencedor() {
+		return vencedor;
+	}
+
+	public void setVencedor(boolean vencedor) {
+		this.vencedor = vencedor;
+	}
 
 	public Opcao getOpcao() {
 		return opcao;
@@ -22,7 +31,7 @@ public class Jogador {
 	}
 
 	public static final class Builder {
-		private Opcao opcao;
+		private Opcao opcao = Opcao.PEDRA;
 
 		private Builder() {}
 
