@@ -1,5 +1,6 @@
 package com.gft.tdd_jokenpo;
 
+import static com.gft.tdd_jokenpo.Constants.PAPEL;
 import static com.gft.tdd_jokenpo.Constants.PEDRA;
 import static com.gft.tdd_jokenpo.Constants.TESOURA;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -47,6 +48,16 @@ class AppTest {
 
 		assertTrue(jogador1.isVencedor());
 		assertFalse(jogador2.isVencedor());
+	}
+
+	@Test
+	void pedraDevePerderDePapel() throws Exception {
+		setarOpcoes(PEDRA, PAPEL);
+
+		Juiz.verificar(jogador1, jogador2);
+
+		assertTrue(jogador2.isVencedor());
+		assertFalse(jogador1.isVencedor());
 	}
 
 }
