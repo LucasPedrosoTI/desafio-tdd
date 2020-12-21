@@ -1,9 +1,9 @@
 package com.gft.tdd_jokenpo;
 
+import static com.gft.tdd_jokenpo.Constants.EMPATE;
 import static com.gft.tdd_jokenpo.Constants.PAPEL;
 import static com.gft.tdd_jokenpo.Constants.PEDRA;
 import static com.gft.tdd_jokenpo.Constants.TESOURA;
-import static com.gft.tdd_jokenpo.model.Juiz.verificar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,14 +19,15 @@ class AppTest {
 
 
 
-	Jogador jogador1;
-
-	Jogador jogador2;
+	private Jogador jogador1;
+	private Jogador jogador2;
+	private Juiz juiz;
 
 	@BeforeEach
 	public void setup() throws Exception {
-		jogador1 = Jogador.builder().build();
+		jogador1 = Jogador.builder().withOpcao(PEDRA).build();
 		jogador2 = Jogador.builder().build();
+		juiz = Juiz.build();
 	}
 
 	private void setarOpcoes(Opcao opcaoJogador1, Opcao opcaoJogador2) {
@@ -43,14 +44,14 @@ class AppTest {
 	void deveEmpatarCasoOpcaoIgual() throws Exception {
 		setarOpcoes(PEDRA, PEDRA);
 
-		assertEquals("EMPATE", Juiz.verificar(jogador1, jogador2));
+		assertEquals(EMPATE, juiz.verificar(jogador1, jogador2));
 	}
 
 	@Test
 	void pedraDeveGanharDeTesoura() throws Exception {
 		setarOpcoes(PEDRA, TESOURA);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador1, jogador2);
 	}
@@ -60,7 +61,7 @@ class AppTest {
 	void pedraDevePerderDePapel() throws Exception {
 		setarOpcoes(PEDRA, PAPEL);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador2, jogador1);
 	}
@@ -70,7 +71,7 @@ class AppTest {
 
 		setarOpcoes(TESOURA, PAPEL);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador1, jogador2);
 	}
@@ -79,7 +80,7 @@ class AppTest {
 	void tesouraDevePerderDePedra() throws Exception {
 		setarOpcoes(TESOURA, PEDRA);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador2, jogador1);
 	}
@@ -88,7 +89,7 @@ class AppTest {
 	void papelDeveGanharDePedra() throws Exception {
 		setarOpcoes(PAPEL, PEDRA);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador1, jogador2);
 	}
@@ -97,7 +98,7 @@ class AppTest {
 	void papelDevePerderDeTesoura() throws Exception {
 		setarOpcoes(PAPEL, TESOURA);
 
-		verificar(jogador1, jogador2);
+		juiz.verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador2, jogador1);
 	}

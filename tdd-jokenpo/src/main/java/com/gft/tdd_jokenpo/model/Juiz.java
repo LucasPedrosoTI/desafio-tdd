@@ -1,54 +1,44 @@
 package com.gft.tdd_jokenpo.model;
 
-import static com.gft.tdd_jokenpo.Constants.PAPEL;
-import static com.gft.tdd_jokenpo.Constants.PEDRA;
-import static com.gft.tdd_jokenpo.Constants.TESOURA;
+import com.gft.tdd_jokenpo.service.verificador.VerificadorDeJokenpo;
+import com.gft.tdd_jokenpo.service.verificador.VerificadorEmpate;
+import com.gft.tdd_jokenpo.service.verificador.VerificadorPapel;
+import com.gft.tdd_jokenpo.service.verificador.VerificadorPedra;
+import com.gft.tdd_jokenpo.service.verificador.VerificadorTesoura;
 
 public class Juiz {
 
-	private static final String EMPATE = "EMPATE";
-	private static final String JOGADOR_2_VENCEU = "JOGADOR 2 VENCEU!";
-	private static final String JOGADOR_1_VENCEU = "JOGADOR 1 VENCEU!";
+	private VerificadorDeJokenpo verificador;
 
-	public static String verificar(Jogador jogador1, Jogador jogador2) {
-
-		Opcao opcaoJogador1 = jogador1.getOpcao();
-		Opcao opcaoJogador2 = jogador2.getOpcao();
-
-		if (opcaoJogador1.equals(opcaoJogador2)) {
-			return EMPATE;
-		}
-
-		if (opcaoJogador1.equals(PEDRA)) {
-			if (opcaoJogador2.equals(TESOURA)) {
-				setVencedorEPerdedor(jogador1, jogador2);
-				return JOGADOR_1_VENCEU;
-			} else {
-				setVencedorEPerdedor(jogador2, jogador1);
-				return JOGADOR_2_VENCEU;
-			}
-		} else if (opcaoJogador1.equals(TESOURA)) {
-			if (opcaoJogador2.equals(PAPEL)) {
-				setVencedorEPerdedor(jogador1, jogador2);
-				return JOGADOR_1_VENCEU;
-			} else {
-				setVencedorEPerdedor(jogador2, jogador1);
-				return JOGADOR_2_VENCEU;
-			}
-		} else {
-			if (opcaoJogador2.equals(PEDRA)) {
-				setVencedorEPerdedor(jogador1, jogador2);
-				return JOGADOR_1_VENCEU;
-			} else {
-				setVencedorEPerdedor(jogador2, jogador1);
-				return JOGADOR_2_VENCEU;
-			}
-		}
+	private Juiz(Builder builder) {
+		this.verificador = builder.verificador;
 	}
 
-	private static void setVencedorEPerdedor(Jogador vencedor, Jogador perdedor) {
-		vencedor.setVencedor(true);
-		perdedor.setVencedor(false);
+	public String verificar(Jogador jogador1, Jogador jogador2) {
+
+		return verificador.resultado(jogador1, jogador2);
+
+	}
+
+	public static Juiz build() {
+		Builder builder = new Builder();
+
+		return builder.build();
+	}
+
+	public static final class Builder {
+		private VerificadorDeJokenpo verificador;
+
+		private Builder() {
+			verificador = new VerificadorEmpate(
+					new VerificadorPedra(
+							new VerificadorTesoura(
+									new VerificadorPapel(null))));
+		}
+
+		public Juiz build() {
+			return new Juiz(this);
+		}
 	}
 
 }
