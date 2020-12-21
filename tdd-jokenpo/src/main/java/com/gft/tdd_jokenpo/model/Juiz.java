@@ -6,38 +6,42 @@ import static com.gft.tdd_jokenpo.Constants.TESOURA;
 
 public class Juiz {
 
+	private static final String EMPATE = "EMPATE";
+	private static final String JOGADOR_2_VENCEU = "JOGADOR 2 VENCEU!";
+	private static final String JOGADOR_1_VENCEU = "JOGADOR 1 VENCEU!";
+
 	public static String verificar(Jogador jogador1, Jogador jogador2) {
 
 		Opcao opcaoJogador1 = jogador1.getOpcao();
 		Opcao opcaoJogador2 = jogador2.getOpcao();
 
 		if (opcaoJogador1.equals(opcaoJogador2)) {
-			return "EMPATE";
+			return EMPATE;
 		}
 
 		if (opcaoJogador1.equals(PEDRA)) {
 			if (opcaoJogador2.equals(TESOURA)) {
 				setVencedorEPerdedor(jogador1, jogador2);
-				return "JOGADOR 1 VENCEU!";
+				return JOGADOR_1_VENCEU;
 			} else {
 				setVencedorEPerdedor(jogador2, jogador1);
-				return "JOGADOR 2 VENCEU!";
+				return JOGADOR_2_VENCEU;
 			}
 		} else if (opcaoJogador1.equals(TESOURA)) {
 			if (opcaoJogador2.equals(PAPEL)) {
 				setVencedorEPerdedor(jogador1, jogador2);
-				return "JOGADOR 1 VENCEU!";
+				return JOGADOR_1_VENCEU;
 			} else {
 				setVencedorEPerdedor(jogador2, jogador1);
-				return "JOGADOR 2 VENCEU!";
+				return JOGADOR_2_VENCEU;
 			}
 		} else {
 			if (opcaoJogador2.equals(PEDRA)) {
 				setVencedorEPerdedor(jogador1, jogador2);
-				return "JOGADOR 1 VENCEU!";
+				return JOGADOR_1_VENCEU;
 			} else {
 				setVencedorEPerdedor(jogador2, jogador1);
-				return "JOGADOR 2 VENCEU!";
+				return JOGADOR_2_VENCEU;
 			}
 		}
 	}
