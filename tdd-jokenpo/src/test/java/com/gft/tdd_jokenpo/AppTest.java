@@ -84,4 +84,13 @@ class AppTest {
 		assertVencedorEPerdedor(jogador2, jogador1);
 	}
 
+	@Test
+	void papelDeveGanharDePedra() throws Exception {
+		setarOpcoes(PAPEL, PEDRA);
+
+		verificar(jogador1, jogador2);
+
+		assertVencedorEPerdedor(jogador1, jogador2);
+	}
+
 }
