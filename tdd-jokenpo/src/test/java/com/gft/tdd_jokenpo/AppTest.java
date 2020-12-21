@@ -33,6 +33,11 @@ class AppTest {
 		jogador2.setOpcao(opcaoJogador2);
 	}
 
+	private void assertVencedorEPerdedor(Jogador vencedor, Jogador perdedor) {
+		assertTrue(vencedor.isVencedor());
+		assertFalse(perdedor.isVencedor());
+	}
+
 	@Test
 	void deveEmpatarCasoOpcaoIgual() throws Exception {
 		setarOpcoes(PEDRA, PEDRA);
@@ -46,9 +51,9 @@ class AppTest {
 
 		Juiz.verificar(jogador1, jogador2);
 
-		assertTrue(jogador1.isVencedor());
-		assertFalse(jogador2.isVencedor());
+		assertVencedorEPerdedor(jogador1, jogador2);
 	}
+
 
 	@Test
 	void pedraDevePerderDePapel() throws Exception {
@@ -56,8 +61,7 @@ class AppTest {
 
 		Juiz.verificar(jogador1, jogador2);
 
-		assertTrue(jogador2.isVencedor());
-		assertFalse(jogador1.isVencedor());
+		assertVencedorEPerdedor(jogador2, jogador1);
 	}
 
 }
