@@ -32,10 +32,14 @@ public class Juiz {
 				return "JOGADOR 2 VENCEU!";
 			}
 		} else {
-
+			if (opcaoJogador2.equals(PEDRA)) {
+				setVencedorEPerdedor(jogador1, jogador2);
+				return "JOGADOR 1 VENCEU!";
+			} else {
+				setVencedorEPerdedor(jogador2, jogador1);
+				return "JOGADOR 2 VENCEU!";
+			}
 		}
-
-		return null;
 	}
 
 	private static void setVencedorEPerdedor(Jogador vencedor, Jogador perdedor) {
