@@ -75,4 +75,13 @@ class AppTest {
 		assertVencedorEPerdedor(jogador1, jogador2);
 	}
 
+	@Test
+	void tesouraDevePerderDePedra() throws Exception {
+		setarOpcoes(TESOURA, PEDRA);
+
+		verificar(jogador1, jogador2);
+
+		assertVencedorEPerdedor(jogador2, jogador1);
+	}
+
 }

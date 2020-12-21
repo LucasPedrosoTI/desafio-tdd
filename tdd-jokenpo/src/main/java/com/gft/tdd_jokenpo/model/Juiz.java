@@ -23,9 +23,7 @@ public class Juiz {
 				setVencedorEPerdedor(jogador2, jogador1);
 				return "JOGADOR 2 VENCEU!";
 			}
-		}
-
-		if (opcaoJogador1.equals(TESOURA)) {
+		} else if (opcaoJogador1.equals(TESOURA)) {
 			if (opcaoJogador2.equals(PAPEL)) {
 				setVencedorEPerdedor(jogador1, jogador2);
 				return "JOGADOR 1 VENCEU!";
@@ -33,6 +31,8 @@ public class Juiz {
 				setVencedorEPerdedor(jogador2, jogador1);
 				return "JOGADOR 2 VENCEU!";
 			}
+		} else {
+
 		}
 
 		return null;
