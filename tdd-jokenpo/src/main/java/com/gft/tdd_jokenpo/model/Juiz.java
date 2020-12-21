@@ -4,7 +4,10 @@ public class Juiz {
 
 	public static String verificar(Jogador jogador1, Jogador jogador2) {
 
-		if (jogador1.getOpcao().equals(jogador2.getOpcao())) {
+		Opcao opcaoJogador1 = jogador1.getOpcao();
+		Opcao opcaoJogador2 = jogador2.getOpcao();
+
+		if (opcaoJogador1.equals(opcaoJogador2)) {
 			return "EMPATE";
 		}
 
