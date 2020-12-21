@@ -3,6 +3,7 @@ package com.gft.tdd_jokenpo;
 import static com.gft.tdd_jokenpo.Constants.PAPEL;
 import static com.gft.tdd_jokenpo.Constants.PEDRA;
 import static com.gft.tdd_jokenpo.Constants.TESOURA;
+import static com.gft.tdd_jokenpo.model.Juiz.verificar;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -49,7 +50,7 @@ class AppTest {
 	void pedraDeveGanharDeTesoura() throws Exception {
 		setarOpcoes(PEDRA, TESOURA);
 
-		Juiz.verificar(jogador1, jogador2);
+		verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador1, jogador2);
 	}
@@ -59,9 +60,19 @@ class AppTest {
 	void pedraDevePerderDePapel() throws Exception {
 		setarOpcoes(PEDRA, PAPEL);
 
-		Juiz.verificar(jogador1, jogador2);
+		verificar(jogador1, jogador2);
 
 		assertVencedorEPerdedor(jogador2, jogador1);
+	}
+
+	@Test
+	void tesouraDeveGanharDePapel() throws Exception {
+
+		setarOpcoes(TESOURA, PAPEL);
+
+		verificar(jogador1, jogador2);
+
+		assertVencedorEPerdedor(jogador1, jogador2);
 	}
 
 }
