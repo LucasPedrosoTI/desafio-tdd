@@ -32,8 +32,8 @@ public class Juiz {
 		private Builder() {
 			verificador = new VerificadorEmpate(
 					new VerificadorPedra(
-							new VerificadorTesoura(
-									new VerificadorPapel(null))));
+							new VerificadorPapel(
+									new VerificadorTesoura(null))));
 		}
 
 		public Juiz build() {
